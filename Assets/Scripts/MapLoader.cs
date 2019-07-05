@@ -26,10 +26,16 @@ public class MapLoader : MonoBehaviour
                 if (x == -1 || x == cols || z == -1 || z == lines)
                     toInstantiate = borderTiles;
 
-                GameObject instance =
+                GameObject obj =
                     Instantiate(toInstantiate, new Vector3(x * delta, 0f, z * delta), Quaternion.identity) as GameObject;
 
-                instance.transform.SetParent(boardHolder);
+                obj.transform.SetParent(boardHolder);
+
+                if (obj.GetComponent<TileStats>())
+                {
+                    obj.GetComponent<TileStats>().x = x;
+                    obj.GetComponent<TileStats>().z = z;
+                }
             }
         }
     }
