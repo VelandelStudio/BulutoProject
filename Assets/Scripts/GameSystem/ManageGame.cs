@@ -6,6 +6,8 @@ public class ManageGame : MonoBehaviour
 {
     public static ManageGame instance = null;
 
+    public PathConstructor pathConstructor;
+
     private MapLoader boardScript;
 
     void Awake()
