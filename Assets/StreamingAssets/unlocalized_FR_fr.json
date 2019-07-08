@@ -1,0 +1,10 @@
+[	
+	{
+		"key":"Test",
+		"value":"Ceci est un test."
+	},
+	{
+		"key":"Hello",
+		"value":"Ceci est un Hello World !"
+	}
+]
