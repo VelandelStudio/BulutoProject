@@ -11,7 +11,6 @@ public class JSONParser
         if (!File.Exists(jsonPath))
         {
             throw new FileNotFoundException("JSONParser can not locate a json file in : " + jsonPath + ". Aborting...");
-            //Debug.LogError("JSONParser can not locate a json file in : "+ jsonPath + ". Aborting...");
         }
     }
 

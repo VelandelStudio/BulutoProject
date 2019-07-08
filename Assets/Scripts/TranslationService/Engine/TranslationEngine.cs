@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace TranslationService
 {
+    /// <summary>
+    /// Engine associated to the Translation Service. 
+    /// The engine is able to load datas from a JSON file and store it in a Dictionary. 
+    /// </summary>
     public class TranslationEngine
     {
         public Dictionary<string, string> UnocalizedStrings { get; private set; }
@@ -17,6 +21,10 @@ namespace TranslationService
             Debug.Log("Translation Engine is ready to work.");
         }
 
+        /// <summary>
+        /// We load all the data contained in the JSON file associated to this language and store it in the UnlocalizedString dictionary.
+        /// </summary>
+        /// <param name="lang"></param>
         public void LoadAllUnlocalizedStrings(TranslationConstants.Languages lang)
         {
             currentLang = lang;

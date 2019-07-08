@@ -23,7 +23,12 @@ namespace TranslationService
 
         private void Start()
         {
-            textField.text = TranslationManager.INSTANCE.api.GetUnlocalizedString(key);
+            LoadLocalizedText();
+        }
+
+        private void LoadLocalizedText()
+        {
+            textField.text = TranslationManager.INSTANCE.api.GetLocalizedString(key);
         }
     }
 }
