@@ -45,6 +45,9 @@ public class MapLoader : MonoBehaviour
         }
 
         ManageGame.instance.pathConstructor.gridArray = gridArray;
+        ManageGame.instance.pathConstructor.rows = lines;
+        ManageGame.instance.pathConstructor.cols = cols;
+        ManageGame.instance.pathConstructor.delta = delta;
     }
 
     public void InitializeMap()
