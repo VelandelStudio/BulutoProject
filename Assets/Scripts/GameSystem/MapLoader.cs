@@ -6,7 +6,7 @@ public class MapLoader : MonoBehaviour
 {
     private int lines = 21;
     private int cols = 15;
-    private int delta = 10;
+    public int delta = 10;
 
     private GameObject[,] gridArray;
     private Transform boardHolder;
@@ -44,10 +44,10 @@ public class MapLoader : MonoBehaviour
             }
         }
 
-        ManageGame.instance.pathConstructor.gridArray = gridArray;
-        ManageGame.instance.pathConstructor.rows = lines;
-        ManageGame.instance.pathConstructor.cols = cols;
-        ManageGame.instance.pathConstructor.delta = delta;
+        ManageActions.instance.pathConstructor.gridArray = gridArray;
+        ManageActions.instance.pathConstructor.rows = lines;
+        ManageActions.instance.pathConstructor.cols = cols;
+        ManageActions.instance.pathConstructor.delta = delta;
     }
 
     public void InitializeMap()

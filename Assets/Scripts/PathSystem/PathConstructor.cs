@@ -11,12 +11,7 @@ public class PathConstructor : MonoBehaviour
     public int cols;
     public int delta;
 
-    public int startXIndex = 3;
-    public int startZIndex = 5;
-    public int endXIndex = 0;
-    public int endZIndex = 0;
-
-    void InitialSetUp()
+    void InitialSetUp(int startXIndex, int startZIndex)
     {
         foreach (GameObject obj in gridArray)
         {
@@ -29,9 +24,9 @@ public class PathConstructor : MonoBehaviour
         gridArray[startXIndex, startZIndex].GetComponent<TileStats>().visited = 0;
     }
 
-    void SetDistance()
+    public void SetDistance(int startXIndex, int startZIndex)
     {
-        InitialSetUp();
+        InitialSetUp(startXIndex, startZIndex);
         int x = startXIndex;
         int z = startZIndex;
 
@@ -45,7 +40,7 @@ public class PathConstructor : MonoBehaviour
         }
     }
 
-    void SetPath()
+    public void SetPath(int endXIndex, int endZIndex)
     {
         int step;
         int x = endXIndex;
@@ -87,8 +82,6 @@ public class PathConstructor : MonoBehaviour
 
             tempList.Clear();
         }
-
-
     }
 
     bool TestDirection(int x, int z, int step, int direction)
@@ -139,7 +132,7 @@ public class PathConstructor : MonoBehaviour
             SetVisited(x - 1, z, step);
     }
 
-    void SetVisited (int x, int z, int step)
+    public void SetVisited (int x, int z, int step)
     {
         if (gridArray[x, z])
         {
@@ -163,4 +156,21 @@ public class PathConstructor : MonoBehaviour
 
         return list[indexNumber];
     }
+
+    // To know where is an obj in the grid
+    public int[] FindObjInGrid(int x, int z)
+    {
+        int[] positions = new int[2];
+
+        foreach(GameObject obj in gridArray)
+        {
+            if (x == obj.GetComponent<TileStats>().x && z == obj.GetComponent<TileStats>().z)
+            {
+                positions[0] = obj.GetComponent<TileStats>().x;
+                positions[1] = obj.GetComponent<TileStats>().z;
+            }
+        }
+
+        return positions;
+    } 
 }
