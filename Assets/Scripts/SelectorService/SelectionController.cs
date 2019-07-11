@@ -30,7 +30,7 @@ namespace SelectorService
                 SelectedElement.IsSelectable = true;
             }
             SelectedElement = newSelected;
-            Debug.Log(newSelected + " is selected.");
+            //Debug.Log(newSelected + " is selected.");
         }
     }
 }

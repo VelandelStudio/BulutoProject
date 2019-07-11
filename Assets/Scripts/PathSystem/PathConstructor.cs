@@ -60,18 +60,19 @@ public class PathConstructor : MonoBehaviour
             return;
         }
 
-        for(int i = step; step > -1; i--)
+        for(int i = step; i > 0; i--)
         {
-            if (TestDirection(x, z, step, 1))
+
+            if (TestDirection(x, z, i, 1))
                 tempList.Add(gridArray[x, z + 1]);
 
-            if (TestDirection(x, z, step, 2))
+            if (TestDirection(x, z, i, 2))
                 tempList.Add(gridArray[x + 1, z]);
 
-            if (TestDirection(x, z, step, 3))
+            if (TestDirection(x, z, i, 3))
                 tempList.Add(gridArray[x, z - 1]);
 
-            if (TestDirection(x, z, step, 4))
+            if (TestDirection(x, z, i, 4))
                 tempList.Add(gridArray[x - 1, z]);
 
             GameObject tempObj = FindClosest(gridArray[endXIndex, endZIndex].transform, tempList);
@@ -145,8 +146,9 @@ public class PathConstructor : MonoBehaviour
         float currentDistance = delta * rows * cols;
         int indexNumber = 0;
 
-        for(int i = 0; i < list.Count; i++)
+        for (int i = 0; i < list.Count; i++)
         {
+
             if (Vector3.Distance(targetLocation.position, list[i].transform.position) < currentDistance)
             {
                 currentDistance = Vector3.Distance(targetLocation.position, list[i].transform.position);

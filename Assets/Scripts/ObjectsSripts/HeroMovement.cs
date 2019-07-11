@@ -8,22 +8,30 @@ public class HeroMovement : MonoBehaviour
     public int xPos;
     public int zPos;
 
-    public bool isActivated = false;
+    public bool isActivated = true;
 
-    private void Start()
+    void Start()
     {
         int delta = ManageActions.instance.pathConstructor.delta;
         int xPosGrid = (int)transform.position.x / delta;
         int zPosGrid = (int)transform.position.z / delta;
 
-        int[] positions = ManageActions.instance.pathConstructor.FindObjInGrid(xPosGrid, zPosGrid);
+        OnChangeTile(xPosGrid, zPosGrid);
+    }
+
+    void Update()
+    {
+        if (isActivated)
+        {
+            ManageGame.instance.SetSelectedHero(gameObject);
+        }
+    }
+
+    public void OnChangeTile(int x, int z)
+    {
+        int[] positions = ManageActions.instance.pathConstructor.FindObjInGrid(x, z);
 
         xPos = positions[0];
         zPos = positions[1];
-    }
-
-    private void Update()
-    {
-        
     }
 }

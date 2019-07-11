@@ -7,6 +7,7 @@ public class ManageGame : MonoBehaviour
     public static ManageGame instance = null;
 
     public List<GameObject> redTeam = new List<GameObject>();
+    public GameObject SelectedHero;
 
     private MapLoader boardScript;
 
@@ -31,6 +32,11 @@ public class ManageGame : MonoBehaviour
 
         boardScript.InitializeMap();
 
-        Instantiate(redTeam[0], new Vector3(5*delta, 1, 3*delta), Quaternion.identity);
+        Instantiate(redTeam[0], new Vector3(5 * delta, 1, 3 * delta), Quaternion.identity);
+    }
+
+    public void SetSelectedHero(GameObject hero)
+    {
+        SelectedHero = hero;
     }
 }
