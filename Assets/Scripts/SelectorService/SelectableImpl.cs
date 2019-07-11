@@ -34,7 +34,7 @@ namespace SelectorService
         private void OnMouseEnter()
         {
             IsOvered = true;
-            Debug.Log("Overing object : " + gameObject);
+            //Debug.Log("Overing object : " + gameObject);
             MouseOver();
         }
 

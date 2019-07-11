@@ -6,8 +6,9 @@ public class MapLoader : MonoBehaviour
 {
     private int lines = 21;
     private int cols = 15;
-    private int delta = 10;
+    public int delta = 10;
 
+    private GameObject[,] gridArray;
     private Transform boardHolder;
 
     public GameObject playTile;
@@ -15,6 +16,8 @@ public class MapLoader : MonoBehaviour
 
     void BoardSetup()
     {
+        gridArray = new GameObject[cols, lines];
+
         boardHolder = new GameObject("Board").transform;
 
         for (int x = -1; x < cols + 1; x++)
@@ -35,9 +38,16 @@ public class MapLoader : MonoBehaviour
                 {
                     obj.GetComponent<TileStats>().x = x;
                     obj.GetComponent<TileStats>().z = z;
+
+                    gridArray[x, z] = obj;
                 }
             }
         }
+
+        ManageActions.instance.pathConstructor.gridArray = gridArray;
+        ManageActions.instance.pathConstructor.rows = lines;
+        ManageActions.instance.pathConstructor.cols = cols;
+        ManageActions.instance.pathConstructor.delta = delta;
     }
 
     public void InitializeMap()
