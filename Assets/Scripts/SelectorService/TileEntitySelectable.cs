@@ -5,7 +5,6 @@ namespace SelectorService
 {
     public class TileEntitySelectable : SelectableImpl
     {
-        private IEnumerator<WaitForSeconds> coroutine;
         private TileStats tile;
 
         void Start()
@@ -42,26 +41,14 @@ namespace SelectorService
             List<GameObject> path = ManageActions.instance.pathConstructor.path;
             path.Reverse();
 
-            coroutine = SmoothMovement();
-
             foreach (GameObject obj in path)
             {
-                coroutine = SmoothMovement();
                 Vector3 vect = new Vector3(obj.transform.position.x, heroToMove.transform.position.y, obj.transform.position.z);
 
                 heroToMove.transform.position = vect;
-                StartCoroutine(coroutine);
             }
 
             heroToMove.GetComponent<HeroMovement>().OnChangeTile(endX, endZ);
         }
-
-        private IEnumerator<WaitForSeconds> SmoothMovement()
-        {
-            Debug.Log("wait");
-            yield return new WaitForSeconds(1f);
-        }
-
-
     }
 }
