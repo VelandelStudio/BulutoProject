@@ -41,14 +41,7 @@ namespace SelectorService
             List<GameObject> path = ManageActions.instance.pathConstructor.path;
             path.Reverse();
 
-            foreach (GameObject obj in path)
-            {
-                Vector3 vect = new Vector3(obj.transform.position.x, heroToMove.transform.position.y, obj.transform.position.z);
-
-                heroToMove.transform.position = vect;
-            }
-
-            heroToMove.GetComponent<HeroMovement>().OnChangeTile(endX, endZ);
+            heroToMove.GetComponent<HeroMovement>().path = path;
         }
     }
 }
