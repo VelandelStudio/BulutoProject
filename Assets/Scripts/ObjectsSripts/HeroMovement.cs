@@ -14,6 +14,7 @@ public class HeroMovement : MonoBehaviour
     public List<GameObject> path = new List<GameObject>();
 
     private Rigidbody rigidB;
+    private GameObject tile; 
 
     void Start()
     {
@@ -42,7 +43,7 @@ public class HeroMovement : MonoBehaviour
             currentTile = 0;
         }
 
-        if (path.Count > 0 && currentTile < path.Count)
+        if (path.Count > 0)
         {
             Move();
         }
@@ -57,6 +58,8 @@ public class HeroMovement : MonoBehaviour
 
         if (currentTile < path.Count)
         {
+            tile.GetComponent<TileStats>().isOccuped = false;
+
             Vector3 dir = new Vector3(path[currentTile].transform.position.x, transform.position.y, path[currentTile].transform.position.z);
 
             transform.LookAt(dir);
@@ -68,10 +71,15 @@ public class HeroMovement : MonoBehaviour
 
     public void OnChangeTile(int x, int z)
     {
-        int[] positions = ManageActions.instance.pathConstructor.FindObjInGrid(x, z);
+        tile = ManageActions.instance.pathConstructor.FindTile(x, z);
 
-        xPos = positions[0];
-        zPos = positions[1];
+        if (tile)
+        {
+            xPos = tile.GetComponent<TileStats>().x;
+            zPos = tile.GetComponent<TileStats>().z;
+
+            tile.GetComponent<TileStats>().isOccuped = true;
+        }
     }
 
     IEnumerator<WaitForSeconds> DeltaMove(Rigidbody rig, Vector3 dir)
