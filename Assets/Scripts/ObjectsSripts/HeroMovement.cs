@@ -32,34 +32,38 @@ public class HeroMovement : MonoBehaviour
         {
             ManageGame.instance.SetSelectedHero(gameObject);
         }
+    }
 
-        if (path.Count > 0)
+    private void FixedUpdate()
+    {
+        if (currentTile == path.Count)
         {
-            if (currentTile == path.Count)
-            {
-                path.Clear();
-            }
-            else
-            {
-                Move();
-            }
+            path.Clear();
+            currentTile = 0;
+        }
+
+        if (path.Count > 0 && currentTile < path.Count)
+        {
+            Move();
         }
     }
 
     public void Move()
     {
-        if(currentTile < path.Count && Vector3.Distance(transform.position, path[currentTile].transform.position) <= 1f )
+        if(currentTile < path.Count && Vector3.Distance(transform.position, path[currentTile].transform.position) < 1.20f )
         {
             currentTile++;
         }
 
-        Vector3 dir = new Vector3(path[currentTile].transform.position.x, transform.position.y, path[currentTile].transform.position.z);
+        if (currentTile < path.Count)
+        {
+            Vector3 dir = new Vector3(path[currentTile].transform.position.x, transform.position.y, path[currentTile].transform.position.z);
 
-        rigidB.position = dir;
+            transform.LookAt(dir);
+            StartCoroutine(DeltaMove(rigidB, dir));
 
-        //rigidB.MovePosition(dir * speed * Time.deltaTime);
-
-        OnChangeTile(path[currentTile].GetComponent<TileStats>().x, path[currentTile].GetComponent<TileStats>().z);
+            OnChangeTile(path[currentTile].GetComponent<TileStats>().x, path[currentTile].GetComponent<TileStats>().z);
+        }
     }
 
     public void OnChangeTile(int x, int z)
@@ -68,5 +72,11 @@ public class HeroMovement : MonoBehaviour
 
         xPos = positions[0];
         zPos = positions[1];
+    }
+
+    IEnumerator<WaitForSeconds> DeltaMove(Rigidbody rig, Vector3 dir)
+    {
+        yield return new WaitForSeconds(0.2f);
+        rig.position = dir;
     }
 }
