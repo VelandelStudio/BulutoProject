@@ -30,8 +30,8 @@ namespace SelectorService
 
             GameObject heroToMove = ManageGame.instance.SelectedHero;
 
-            int startX = heroToMove.GetComponent<HeroMovement>().xPos;
-            int startZ = heroToMove.GetComponent<HeroMovement>().zPos;
+            int startX = heroToMove.GetComponent<HeroMovement>().PosX;
+            int startZ = heroToMove.GetComponent<HeroMovement>().PosZ;
             int endX = tile.x;
             int endZ = tile.z;
 
