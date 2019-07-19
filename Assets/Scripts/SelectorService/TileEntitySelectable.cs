@@ -30,8 +30,8 @@ namespace SelectorService
 
             GameObject heroToMove = ManageGame.instance.SelectedHero;
 
-            int startX = heroToMove.GetComponent<HeroMovement>().xPos;
-            int startZ = heroToMove.GetComponent<HeroMovement>().zPos;
+            int startX = heroToMove.GetComponent<HeroMovement>().PosX;
+            int startZ = heroToMove.GetComponent<HeroMovement>().PosZ;
             int endX = tile.x;
             int endZ = tile.z;
 
@@ -41,14 +41,7 @@ namespace SelectorService
             List<GameObject> path = ManageActions.instance.pathConstructor.path;
             path.Reverse();
 
-            foreach (GameObject obj in path)
-            {
-                Vector3 vect = new Vector3(obj.transform.position.x, heroToMove.transform.position.y, obj.transform.position.z);
-
-                heroToMove.transform.position = vect;
-            }
-
-            heroToMove.GetComponent<HeroMovement>().OnChangeTile(endX, endZ);
+            heroToMove.GetComponent<HeroMovement>().path = path;
         }
     }
 }

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redTeam:
   - {fileID: 4165638905579478013, guid: dc35412fd10c015489a12be776a9955b, type: 3}
+  SelectedHero: {fileID: 0}
 --- !u!114 &2429110454319070316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,3 +64,9 @@ MonoBehaviour:
     type: 3}
   borderTiles: {fileID: 2091471734735809996, guid: f57134c87d461bc4f9371e8f765fe4cc,
     type: 3}
+  wallTiles:
+  - {fileID: 4275142148910820931, guid: 74f5b9eb87500114987e680746533f12, type: 3}
+  - {fileID: 3528393529471101720, guid: 84ca8f85f21505746b2c5a4040905b3f, type: 3}
+  - {fileID: 5204854285565264535, guid: 255a8995b55bc7f4daf4c9c99d691bf7, type: 3}
+  nbWalls: 15
+  wallsToInstantiate: []

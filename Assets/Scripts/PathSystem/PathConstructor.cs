@@ -15,7 +15,7 @@ public class PathConstructor : MonoBehaviour
     {
         foreach (GameObject obj in gridArray)
         {
-            if (obj.GetComponent<TileStats>())
+            if (obj.GetComponent<TileStats>() && !obj.GetComponent<TileStats>().isOccuped)
             {
                 obj.GetComponent<TileStats>().visited = -1;
             }
@@ -135,7 +135,7 @@ public class PathConstructor : MonoBehaviour
 
     public void SetVisited (int x, int z, int step)
     {
-        if (gridArray[x, z])
+        if (gridArray[x, z] && !gridArray[x, z].GetComponent<TileStats>().isOccuped)
         {
             gridArray[x, z].GetComponent<TileStats>().visited = step;
         }
@@ -159,20 +159,16 @@ public class PathConstructor : MonoBehaviour
         return list[indexNumber];
     }
 
-    // To know where is an obj in the grid
-    public int[] FindObjInGrid(int x, int z)
+    public GameObject FindTile(int x, int z)
     {
-        int[] positions = new int[2];
-
-        foreach(GameObject obj in gridArray)
+        foreach (GameObject obj in gridArray)
         {
             if (x == obj.GetComponent<TileStats>().x && z == obj.GetComponent<TileStats>().z)
             {
-                positions[0] = obj.GetComponent<TileStats>().x;
-                positions[1] = obj.GetComponent<TileStats>().z;
+                return obj;
             }
         }
 
-        return positions;
-    } 
+        return null;
+    }
 }
