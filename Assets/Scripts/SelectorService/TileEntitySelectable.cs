@@ -27,21 +27,23 @@ namespace SelectorService
         public override void OnClick()
         {
             // Debug.Log("You clicked on me ! If you have enough move points and if a path is available, i shoudl tell you how to come to me. If, you don't i should display and error message on your screen.");
+            if (ManageGame.instance.SelectedHero)
+            {
+                GameObject heroToMove = ManageGame.instance.SelectedHero;
 
-            GameObject heroToMove = ManageGame.instance.SelectedHero;
+                int startX = heroToMove.GetComponent<HeroMovement>().PosX;
+                int startZ = heroToMove.GetComponent<HeroMovement>().PosZ;
+                int endX = tile.x;
+                int endZ = tile.z;
 
-            int startX = heroToMove.GetComponent<HeroMovement>().PosX;
-            int startZ = heroToMove.GetComponent<HeroMovement>().PosZ;
-            int endX = tile.x;
-            int endZ = tile.z;
+                ManageActions.instance.pathConstructor.SetDistance(startX, startZ);
+                ManageActions.instance.pathConstructor.SetPath(endX, endZ);
 
-            ManageActions.instance.pathConstructor.SetDistance(startX, startZ);
-            ManageActions.instance.pathConstructor.SetPath(endX, endZ);
+                List<GameObject> path = ManageActions.instance.pathConstructor.path;
+                path.Reverse();
 
-            List<GameObject> path = ManageActions.instance.pathConstructor.path;
-            path.Reverse();
-
-            heroToMove.GetComponent<HeroMovement>().path = path;
+                heroToMove.GetComponent<HeroMovement>().path = path;
+            }
         }
     }
 }

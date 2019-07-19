@@ -6,7 +6,7 @@ public class HeroMovement : BlockableElement
 {
     public float speed = 0.5f;
     public int currentTile = 0;
-    public bool isActivated = true;
+    public bool isActivated = false;
     public List<GameObject> path = new List<GameObject>();
 
     private Rigidbody rigidB;
@@ -46,7 +46,7 @@ public class HeroMovement : BlockableElement
 
     public void Move()
     {
-        if(currentTile < path.Count && Vector3.Distance(transform.position, path[currentTile].transform.position) < 1.20f )
+        if (currentTile < path.Count && Vector3.Distance(transform.position, path[currentTile].transform.position) < 1.20f)
         {
             currentTile++;
         }

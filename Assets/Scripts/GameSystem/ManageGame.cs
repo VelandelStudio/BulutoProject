@@ -5,11 +5,10 @@ using UnityEngine;
 public class ManageGame : MonoBehaviour
 {
     public static ManageGame instance = null;
-
-    public List<GameObject> redTeam = new List<GameObject>();
     public GameObject SelectedHero;
 
     private MapLoader boardScript;
+    public HeroManager heroManager;
 
     void Awake()
     {
@@ -22,6 +21,7 @@ public class ManageGame : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         boardScript = GetComponent<MapLoader>();
+        heroManager = GetComponent<HeroManager>();
 
         InitGame();
     }
@@ -31,12 +31,14 @@ public class ManageGame : MonoBehaviour
         int delta = boardScript.delta;
 
         boardScript.InitializeMap();
-
-        Instantiate(redTeam[0], new Vector3(5 * delta, 1, 3 * delta), Quaternion.identity);
+        heroManager.InitializeHeroPos(delta);
     }
 
     public void SetSelectedHero(GameObject hero)
     {
-        SelectedHero = hero;
+        if (hero.GetComponent<HeroMovement>())
+        {
+            SelectedHero = hero;
+        }
     }
 }

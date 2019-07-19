@@ -8,8 +8,6 @@ public class ManageActions : MonoBehaviour
 
     public PathConstructor pathConstructor;
 
-    private MapLoader boardScript;
-
     void Awake()
     {
         if (instance == null)

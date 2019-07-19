@@ -48,6 +48,7 @@ public class MapLoader : MonoBehaviour
             }
         }
 
+        ManageGame.instance.heroManager.gridArray = gridArray;
         ManageActions.instance.pathConstructor.gridArray = gridArray;
         ManageActions.instance.pathConstructor.rows = lines;
         ManageActions.instance.pathConstructor.cols = cols;
@@ -103,7 +104,6 @@ public class MapLoader : MonoBehaviour
         {
             if (obj.GetComponent<WallElement>().PosX == x && obj.GetComponent<WallElement>().PosZ == z)
             {
-                Debug.Log(true);
                 return true;
             }
         }
